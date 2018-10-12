@@ -101,14 +101,14 @@ export class MainComponent implements OnInit {
 			const playDisabled = this.dirty || !this.readyToPlay;
 
 
-			if (event.keyCode == 13 && (event.ctrlKey || event.metaKey) || event.keyCode == 10) {
+			if (event.keyCode == 13 && (event.ctrlKey || event.metaKey) || event.keyCode == 10 || (event.metaKey && event.keyCode == 9)) {
 				if (!reqDisabled) this.requestSynthesis(true);
 				else if (!playDisabled) this.playSynthesis();
 
 				if (!playDisabled) this.writeToClipboard();
 			}
 
-			alert(`${event.ctrlKey} ${event.metaKey} ${event.keyCode}`);
+			// alert(`${event.ctrlKey} ${event.metaKey} ${event.keyCode}`);
 		});
 	}
 
