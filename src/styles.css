@@ -1,1 +1,150 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  /* font-family: "Jost" !important; */
+  font-family: "Roboto",  !important;
+}
+
+::-webkit-scrollbar {
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  left: 0;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 2px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #7B7B7B;
+  display: block;
+  width: 12px;
+}
+
+::-webkit-scrollbar-button,
+::-webkit-resizer,
+::-webkit-scrollbar-corner {
+  display: none
+}
+
+/* @font-face {
+	font-family: "Jost";
+	font-weight: 300;
+	font-style: normal;
+	src: url("assets/Jost-300-Light.otf")
+}
+
+@font-face {
+	font-family: "Jost";
+	font-weight: 300;
+	font-style: italic;
+	src: url("assets/Jost-300-LightItalic.otf")
+}
+
+@font-face {
+	font-family: "Jost";
+	font-weight: 400;
+	font-style: normal;
+	src: url("assets/Jost-400-Book.otf")
+}
+
+@font-face {
+	font-family: "Jost";
+	font-weight: 400;
+	font-style: italic;
+	src: url("assets/Jost-400-BookItalic.otf")
+}
+
+@font-face {
+	font-family: "Jost";
+	font-weight: 700;
+	font-style: normal;
+	src: url("assets/Jost-700-Bold.otf")
+}
+
+@font-face {
+	font-family: "Jost";
+	font-weight: 700;
+	font-style: italic;
+	src: url("assets/Jost-700-BoldItalic.otf")
+}
+
+@font-face {
+	font-family: "Jost";
+	font-weight: 900;
+	font-style: normal;
+	src: url("assets/Jost-900-Black.otf")
+}
+
+@font-face {
+	font-family: "Jost";
+	font-weight: 400;
+	font-style: italic;
+	src: url("assets/Jost-900-BlackItalic.otf")
+} */
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 300;
+  font-style: normal;
+  src: url("assets/Roboto-Light.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 300;
+  font-style: italic;
+  src: url("assets/Roboto-LightItalic.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-style: normal;
+  src: url("assets/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-style: italic;
+  src: url("assets/Roboto-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 700;
+  font-style: normal;
+  src: url("assets/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 700;
+  font-style: italic;
+  src: url("assets/Roboto-BoldItalic.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 900;
+  font-style: normal;
+  src: url("assets/Roboto-Black.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 900;
+  font-style: italic;
+  src: url("assets/Roboto-BlackItalic.ttf");
+}

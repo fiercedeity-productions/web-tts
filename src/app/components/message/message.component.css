@@ -1,0 +1,69 @@
+.mother-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1024;
+  transition: 250ms ease-out all;
+  pointer-events: none;
+}
+
+.mother-div[shown] {
+  pointer-events: all;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1024;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  z-index: 1024;
+  width: 50vw
+}
+
+.modal mat-card-content {
+  max-height: 30vh !important;
+  overflow: auto;
+  /* line-height: 1.5; */
+  color: #111111;
+}
+
+.modal mat-card-content pre {
+  font: inherit;
+  white-space: pre-wrap;
+  font-weight: 300;
+}
+
+.modal mat-card-header {
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.modal mat-card-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.modal mat-card-actions [mat-button] {
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+@media (max-width: 599px) {
+  .modal {
+    width: 100vw;
+  }
+}

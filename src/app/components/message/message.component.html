@@ -1,0 +1,18 @@
+<div class="mother-div" [attr.shown]="msg.messagesShown() ? '' : null">
+	<div class="modal-container" *ngFor="let message of msg.getMessages()" [@fadeIn]>
+		<mat-card class="modal">
+			<mat-card-header *ngIf="message.hasOwnProperty('title')">
+				<mat-card-title>{{message.title}}</mat-card-title>
+				<mat-card-subtitle *ngIf="message.hasOwnProperty('subtitle')">{{message.subtitle}}</mat-card-subtitle>
+			</mat-card-header>
+
+			<mat-card-content>
+				<pre>{{message.message}}</pre>
+			</mat-card-content>
+
+			<mat-card-actions>
+				<button mat-flat-button align="end" mat-button (click)="message.addressed = true">Close</button>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</div>

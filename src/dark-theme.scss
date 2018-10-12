@@ -1,0 +1,70 @@
+
+// @include mat-core();
+
+// // custom background and foreground palettes
+// $dark-theme-background: (
+// 	status-bar: red,
+// 	app-bar:    red,
+// 	background: red,
+// 	hover:      #1B1E21, // eg: drop down options
+// 	card:       #03050A, // card
+// 	dialog:     red,
+// 	disabled-button: #03050A, //
+// 	raised-button: #0C1B33,
+// 	focused-button: red,
+// 	selected-button: red,
+// 	selected-disabled-button: red,
+// 	disabled-button-toggle:red,
+// 	unselected-chip:red,
+// 	disabled-list-option: red,
+// );
+
+// $dark-theme-foreground: (
+// 	base:             red,
+// 	divider:           #E8FEB2,
+// 	dividers : 	       #E8FEB2,
+// 	disabled:          red,
+// 	disabled-button:   #93A3B1,
+// 	disabled-text:     #B0BCC6,
+// 	hint-text:         red,
+// 	secondary-text:    #C4CCD4,
+// 	icon:              red,
+// 	icons:             red,
+// 	text:              #D7DDE2,
+// 	slider-min:        red,
+// 	slider-off:        red,
+// 	slider-off-active: red,
+// );
+
+// // instead of creating a theme with mat-light-theme like a sane person, we will create our own theme-creating function that lets us apply our own foreground and background palettes.
+
+// @function create-theme($primary, $accent, $warn: mat-palette($mat-red)) {
+	// 	@return (
+		// 		primary: $primary,
+// 		accent: $accent,
+// 		warn: $warn,
+// 		is-dark: false,
+// 		foreground: $dark-theme-foreground,
+// 		background: $dark-theme-background,
+// 	);
+// }
+
+// // The rest of this is like a normal theme.scss file. The only difference being that we use create-theme instead of mat-light-theme
+// $custom-theme-primary: mat-palette($mat-blue-grey);
+// $custom-theme-accent: mat-palette($mat-blue);
+// $custom-theme-warn: mat-palette($mat-red);
+
+// $custom-theme: create-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+// @include angular-material-theme($custom-theme);
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$primary: mat-palette($mat-blue-grey);
+$accent: mat-palette($mat-cyan);
+$warn: mat-palette($mat-pink);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);

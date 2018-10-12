@@ -1,0 +1,123 @@
+<mat-card class="controls">
+  <form>
+    <div class="form-grid">
+      <mat-form-field>
+        <mat-select placeholder="API version" [formControl]="versionControl" (selectionChange)="versionChanged()">
+          <mat-option *ngFor="let version of versions" [value]="version.val">{{version.desc}}</mat-option>
+        </mat-select>
+        <mat-hint align="end">
+          <span (click)="showVersionHelp()" style="cursor: pointer">?</span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Language" [formControl]="languageControl" (selectionChange)="languageChanged()">
+          <mat-option *ngFor="let language of languages" [value]="language.code">
+            {{language.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Voice type" [formControl]="typeControl" (selectionChange)="typeChanged()" [disabled]="getTypes().length == 1">
+          <mat-option *ngFor="let type of getTypes()" [value]="type">{{type == "Wavenet" ? "WaveNet" : type}}</mat-option>
+        </mat-select>
+        <mat-hint align="end">
+          <span (click)="showVoiceTypeHelp()" style="cursor: pointer">?</span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Voice" [formControl]="voiceControl" [disabled]="getVoices().length == 1"
+          (selectionChange)="voiceChanged()">
+          <mat-option *ngFor="let voice of getVoices()" [value]="voice.name">{{voice.name}}</mat-option>
+        </mat-select>
+
+        <mat-hint align="end">
+          <span (click)="showVoiceNameHelp()" style="cursor: pointer">?</span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="text-input">
+        <textarea class="text-input" [formControl]="textControl" matInput rows="6" placeholder="Text to be synthesized"
+          maxlength="5000" (input)="textChanged()"></textarea>
+
+        <mat-hint align="start">
+          {{textControl.value.length}} / 5000&nbsp;
+        </mat-hint>
+        <mat-hint align="end">
+          <span (click)="showSSMLHelp()" style="cursor: pointer">?</span>
+          &nbsp;
+          <span (click)="ssmlEnabled = !ssmlEnabled; dirty = true" style="cursor: pointer">
+            <b *ngIf="ssmlEnabled">SSML</b>
+            <span *ngIf="!ssmlEnabled">SSML</span> &nbsp;
+
+            <b *ngIf="!ssmlEnabled">Plaintext</b>
+            <span *ngIf="ssmlEnabled">Plaintext</span> &nbsp;
+          </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <div class="voice-controls">
+        <mat-form-field class="format-select">
+          <mat-select placeholder="Format" [formControl]="formatControl" (selectionChange)="formatChanged()">
+            <mat-option *ngFor="let format of formats" [value]="format.code">{{format.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="profile-select">
+          <mat-select placeholder="Device Profile" [formControl]="profileControl" (selectionChange)="profileChanged()"
+            (selectionChange)="profileChanged()">
+            <mat-option *ngFor="let profile of profiles" [value]="profile.val">{{profile.desc}}</mat-option>
+          </mat-select>
+
+          <mat-hint align="end">
+            <span (click)="showProfileHelp()" style="cursor: pointer">?</span>
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [formControl]="rateControl" min="0.25" max="4" step="0.25" placeholder="Rate" type="number"
+            (input)="rateChanged()">
+          <span matSuffix>&nbsp;&times;</span>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [formControl]="pitchControl" min="-20" max="20" step="1" placeholder="Pitch" type="number"
+            (input)="pitchChanged()">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [formControl]="gainControl" min="-96" max="16" step="1" placeholder="Gain" type="number"
+            (input)="gainChanged()">
+          <span matSuffix>&nbsp;dB</span>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [formControl]="sampleRateControl" min="12000" max="192000" step="1000" placeholder="Sample rate"
+            type="number" (input)="sampleRateChanged()">
+          <span matSuffix>&nbsp;Hz</span>
+
+          <mat-hint align="end">
+            <span (click)="showSampleRateHelp()" style="cursor: pointer">?</span>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="file-controls">
+        <button class="request-button" mat-raised-button [disabled]="(!languageControl.valid || !typeControl.valid || !voiceControl.valid || !versionControl.valid || !textControl.valid
+				|| !formatControl.valid || !profileControl.valid || !rateControl.valid || !pitchControl.valid || !gainControl.valid || !sampleRateControl.valid || !dirty) && !requesting"
+          (click)="requestSynthesis()">{{requesting ? "Cancel request" : "Request"}}</button>
+
+        <button mat-flat-button [disabled]="(dirty || !readyToPlay) && !sound.playing" class="play-button" (click)="playSynthesis()">{{sound.playing
+          ? "Stop" : "Play" }}</button>
+
+        <button mat-flat-button [disabled]="dirty || !readyToPlay" class="save-button" (click)="writeToClipboard()">Copy</button>
+
+        <button mat-flat-button [disabled]="true" (click)="saveSynthesis($event)">Save</button>
+      </div>
+    </div>
+  </form>
+</mat-card>
+
+<textarea class="base64" [formControl]="codeControl" #code></textarea>
