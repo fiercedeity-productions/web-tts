@@ -107,6 +107,8 @@ export class MainComponent implements OnInit {
 
 				if (!playDisabled) this.writeToClipboard();
 			}
+
+			alert(`${event.ctrlKey} ${event.metaKey} ${event.keyCode}`);
 		});
 	}
 
